@@ -127,6 +127,9 @@ map <C-down> :resize +5<cr>
 map <C-up> :resize -5<cr>
 map <C-right> :vertical resize +5<cr>
 
+" Sudo to write
+cmap w!! silent write !sudo tee % >/dev/null
+
 
 " ==============================================================================
 " Bundles to install and load
@@ -141,6 +144,12 @@ Bundle 'ervandew/supertab'
 Bundle 'wojtekmach/vim-rename'
 Bundle 'tpope/vim-surround'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/snipmate-snippets'
+Bundle 'tpope/vim-fugitive'
 
 
 " ==============================================================================
@@ -174,6 +183,9 @@ nmap yS  <Plug>YSurround
 nmap yss <Plug>Yssurround
 nmap ySs <Plug>YSsurround
 nmap ySS <Plug>YSsurround
+
+" Shortcut for reloading snippets, useful when developing
+nnoremap ,sr <esc>:exec ReloadAllSnippets()<cr>
 
 
 " ==============================================================================
