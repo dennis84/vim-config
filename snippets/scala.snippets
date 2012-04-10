@@ -11,3 +11,20 @@ snippet pastel
 	 * For the full copyright and license information, please view the LICENSE
 	 * file that was distributed with this source code.
 	 */
+
+snippet spec
+	package ${1}
+
+	import org.specs2.specification.Scope
+	import org.specs2.mutable._
+
+	class ${2}Spec extends Specification {
+
+	  "${3}" should {
+	    "${4}" in {
+	      1 must_== 1
+	    }
+	  }
+
+	}
+
