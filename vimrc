@@ -147,9 +147,8 @@ Bundle 'derekwyatt/vim-scala'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
-Bundle 'honza/snipmate-snippets'
 Bundle 'tpope/vim-fugitive'
-
+Bundle 'spf13/PIV'
 
 " ==============================================================================
 " Configure Bundles
@@ -182,6 +181,10 @@ nmap yS  <Plug>YSurround
 nmap yss <Plug>Yssurround
 nmap ySs <Plug>YSsurround
 nmap ySS <Plug>YSsurround
+
+" PHP PIV Bundle
+let g:DisableAutoPHPFolding = 0
+let g:PIVAutoClose = 0
 
 
 " ==============================================================================
