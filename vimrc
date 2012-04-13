@@ -136,6 +136,7 @@ cmap w!! silent write !sudo tee % >/dev/null
 " ==============================================================================
 
 Bundle 'gmarik/vundle'
+Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'sickill/vim-monokai'
 Bundle 'scrooloose/nerdtree'
@@ -149,6 +150,8 @@ Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
 Bundle 'tpope/vim-fugitive'
 Bundle 'spf13/PIV'
+Bundle 'slack/vim-bufexplorer'
+
 
 " ==============================================================================
 " Configure Bundles
