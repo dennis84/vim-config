@@ -149,7 +149,6 @@ Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
 Bundle 'tpope/vim-fugitive'
-Bundle 'spf13/PIV'
 Bundle 'slack/vim-bufexplorer'
 
 
@@ -184,10 +183,6 @@ nmap yS  <Plug>YSurround
 nmap yss <Plug>Yssurround
 nmap ySs <Plug>YSsurround
 nmap ySS <Plug>YSsurround
-
-" PHP PIV Bundle
-let g:DisableAutoPHPFolding = 0
-let g:PIVAutoClose = 0
 
 
 " ==============================================================================
