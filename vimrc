@@ -7,23 +7,62 @@
 " My personal Vim config!
 
 " ==============================================================================
-" Global Stuff
+" Initial Stuff
 " ==============================================================================
 
 " Must be first line
 set nocompatible
+filetype off
 
 " Setup vundle bundle manager
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Set filetype stuff to on
-filetype on
-filetype plugin on
-filetype indent on
+
+" ==============================================================================
+" Bundles to install and load
+" ==============================================================================
+
+Bundle 'gmarik/vundle'
+Bundle 'mileszs/ack.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'sickill/vim-monokai'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'ervandew/supertab'
+Bundle 'wojtekmach/vim-rename'
+Bundle 'tpope/vim-surround'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'garbas/vim-snipmate'
+Bundle 'tpope/vim-fugitive'
+Bundle 'slack/vim-bufexplorer'
+Bundle 'gre/play2vim'
+Bundle 'altercation/vim-colors-solarized'
+
+
+" ==============================================================================
+" Global Stuff
+" ==============================================================================
 
 " Enables the syntax highlighting
 syntax on
+
+" Set filetype stuff to on
+filetype plugin indent on
+
+" Colorsheme
+
+" Colorsheme
+set t_Co=16
+let g:solarized_termcolors=16
+let g:solarized_termtrans=0
+let g:solarized_menu=0
+let g:solarized_italic=0
+set background=dark
+colorscheme solarized
+"colorscheme Monokai
 
 " Sets a ruler at 80 chars
 set colorcolumn=80
@@ -49,10 +88,6 @@ set softtabstop=2
 
 " I dont know what that is doing
 set shiftwidth=2
-
-" I'm happy to type the case of things.  I tried the ignorecase, smartcase
-" thing but it just wasn't working out for me
-set noignorecase
 
 " Intuitive backspacing.
 set backspace=indent,eol,start
@@ -132,33 +167,8 @@ cmap w!! silent write !sudo tee % >/dev/null
 
 
 " ==============================================================================
-" Bundles to install and load
-" ==============================================================================
-
-Bundle 'gmarik/vundle'
-Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'sickill/vim-monokai'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'ervandew/supertab'
-Bundle 'wojtekmach/vim-rename'
-Bundle 'tpope/vim-surround'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'tpope/vim-fugitive'
-Bundle 'slack/vim-bufexplorer'
-
-
-" ==============================================================================
 " Configure Bundles
 " ==============================================================================
-
-" I dont know why scala will not detected automaticly so here is the fix to
-" enable scala syntax.
-au BufRead,BufNewFile *.scala set filetype=scala
 
 " Toggle NerdTree
 map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
@@ -206,9 +216,6 @@ if has("gui_running")
 
   "remove right-hand scroll bar
   set guioptions-=r
-
-  " Sets the my favorit color scheme monokai
-  colorscheme Monokai
 endif
 
 " ==============================================================================
@@ -230,4 +237,3 @@ function! CleanCode()
 endfunction
 
 nmap <leader>clean :call CleanCode()<cr>
-
