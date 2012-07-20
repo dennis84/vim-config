@@ -216,6 +216,12 @@ if has("gui_running")
 
   "remove right-hand scroll bar
   set guioptions-=r
+
+  if strftime("%H") < 22 && strftime("%H") > 8
+    set background=light
+  else
+    set background=dark
+  endif
 endif
 
 " ==============================================================================
@@ -225,15 +231,15 @@ endif
 " Cleans the code. Replaces tabs with spaces, fixes the line returns and
 " deletes end of line blanks.
 function! CleanCode()
-    " Replace tabs with spaces
-    %retab
+  " Replace tabs with spaces
+  %retab
 
-    " Turn DOS returns ^M into real returns
-    %s/\r/\r/eg
+  " Turn DOS returns ^M into real returns
+  %s/\r/\r/eg
 
-    " Delete end of line blanks
-    %s=  *$==e
-    echo "Cleaned up this mess."
+  " Delete end of line blanks
+  %s=  *$==e
+  echo "Cleaned up this mess."
 endfunction
 
 nmap <leader>clean :call CleanCode()<cr>
