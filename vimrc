@@ -40,6 +40,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'slack/vim-bufexplorer'
 Bundle 'gre/play2vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'daveray/vimclojure-easy'
 
 
 " ==============================================================================
@@ -69,7 +70,7 @@ set colorcolumn=80
 
 " Enables move to the prvious or the next line after move left or right on
 " line end.
-set whichwrap+=<,>,h,l,[,]
+"set whichwrap+=<,>,h,l,[,]
 
 " Use spaces then tabs
 set expandtab
@@ -107,6 +108,8 @@ set notitle
 
 " No beeping.
 set visualbell
+
+set mouse=n
 
 " Show 7 lines of context around the cursor.
 set scrolloff=7
@@ -216,6 +219,7 @@ if has("gui_running")
 
   "remove right-hand scroll bar
   set guioptions-=r
+  set guioptions-=L
 endif
 
 " ==============================================================================
