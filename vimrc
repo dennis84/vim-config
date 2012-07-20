@@ -225,7 +225,6 @@ if has("gui_running")
   else
     set background=dark
   endif
->>>>>>> a2eabc8c3b4affd2d3044c794be37c997728d25e
 endif
 
 " ==============================================================================
