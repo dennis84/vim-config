@@ -41,6 +41,7 @@ Bundle 'slack/vim-bufexplorer'
 Bundle 'gre/play2vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'daveray/vimclojure-easy'
+Bundle 'VimClojure'
 
 
 " ==============================================================================
@@ -219,6 +220,9 @@ if has("gui_running")
 
   "remove right-hand scroll bar
   set guioptions-=r
+
+  " remove nerdtree scrollbar
+  set guioptions-=L
 
   if strftime("%H") < 18 && strftime("%H") > 8
     set background=light
