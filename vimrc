@@ -41,6 +41,7 @@ Bundle 'slack/vim-bufexplorer'
 Bundle 'gre/play2vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'daveray/vimclojure-easy'
+Bundle 'nono/vim-handlebars'
 
 
 " ==============================================================================
