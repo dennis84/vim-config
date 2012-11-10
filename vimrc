@@ -42,6 +42,7 @@ Bundle 'gre/play2vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'daveray/vimclojure-easy'
 Bundle 'nono/vim-handlebars'
+Bundle 'groenewege/vim-less'
 
 
 " ==============================================================================
@@ -110,7 +111,7 @@ set notitle
 " No beeping.
 set visualbell
 
-set mouse=n
+set mouse=
 
 " Show 7 lines of context around the cursor.
 set scrolloff=7
@@ -224,11 +225,7 @@ if has("gui_running")
   " remove nerdtree scrollbar
   set guioptions-=L
 
-  if strftime("%H") < 18 && strftime("%H") > 8
-    set background=light
-  else
-    set background=dark
-  endif
+  set background=dark
 endif
 
 " ==============================================================================

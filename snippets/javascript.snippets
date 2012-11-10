@@ -1,3 +1,33 @@
+snippet model
+	define([], function () {
+	
+	  var module = Backbone.Model.extend({
+	  })
+	
+	  return module
+	})
+
+snippet collection
+	define([], function () {
+	
+	  var module = Backbone.Collection.extend({
+	    model: ${1}
+	  })
+	
+	  return module
+	})
+
+snippet view
+	define([], function () {
+	
+	  var module = Backbone.View.extend({
+	    render: function () {
+	    }
+	  })
+	
+	  return module
+	})
+
 snippet muh
 	/*                  __       __ 
 	 * .--------.--.--.|  |--.  |__|.-----.
@@ -18,17 +48,3 @@ snippet muh
 	 * file that was distributed with this source code.
 	 */
 
-snippet spec
-	package ${1}
-
-	import org.specs2.specification.Scope
-	import org.specs2.mutable._
-
-	class ${2}Spec extends Specification {
-
-	  "${3}" should {
-	    "${4}" in {
-	      1 must_== 1
-	    }
-	  }
-	}
