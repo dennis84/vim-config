@@ -43,6 +43,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'daveray/vimclojure-easy'
 Bundle 'nono/vim-handlebars'
 Bundle 'groenewege/vim-less'
+Bundle 'Shougo/neocomplcache'
 
 
 " ==============================================================================
@@ -69,10 +70,6 @@ colorscheme solarized
 
 " Sets a ruler at 80 chars
 set colorcolumn=80
-
-" Enables move to the prvious or the next line after move left or right on
-" line end.
-"set whichwrap+=<,>,h,l,[,]
 
 " Use spaces then tabs
 set expandtab
@@ -111,6 +108,7 @@ set notitle
 " No beeping.
 set visualbell
 
+" Disable the mouse.
 set mouse=
 
 " Show 7 lines of context around the cursor.
@@ -198,6 +196,22 @@ nmap yS  <Plug>YSurround
 nmap yss <Plug>Yssurround
 nmap ySs <Plug>YSsurround
 nmap ySS <Plug>YSsurround
+
+
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 'infercase'
+let g:neocomplcache_enable_auto_select = 0
+let g:neocomplcache_enable_cursor_hold_i = 1
+let g:neocomplcache_enable_insert_char_pre = 1
+let g:neocomplcache_temporary_dir = '~/.cache/neocon'
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
 
 " ==============================================================================
