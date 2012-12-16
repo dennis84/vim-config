@@ -18,6 +18,9 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" Sets the mapleader (<leader>) to ,
+let mapleader = ","
+
 
 " ==============================================================================
 " Bundles to install and load
@@ -138,9 +141,6 @@ set cmdwinheight=12
 " Key Mappings
 " ==============================================================================
 
-" Sets the mapleader (<leader>) to ,
-let mapleader = ","
-
 " I am to stupid to understand vims copy and paste from outside so there is
 " the way to copy as in vim with a CTRL before.
 nmap <C-P> "+gP
@@ -165,8 +165,11 @@ map <C-down> :resize +5<cr>
 map <C-up> :resize -5<cr>
 map <C-right> :vertical resize +5<cr>
 
-" Sudo to write
-cmap w!! silent write !sudo tee % >/dev/null
+" Clear search highlight
+nmap <silent> <leader>/ :nohl<cr>
+
+noremap H ^
+noremap L $
 
 
 " ==============================================================================
@@ -175,7 +178,7 @@ cmap w!! silent write !sudo tee % >/dev/null
 
 " Toggle NerdTree
 map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-
+ 
 " Other NerdTree options
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
@@ -197,7 +200,6 @@ nmap yss <Plug>Yssurround
 nmap ySs <Plug>YSsurround
 nmap ySS <Plug>YSsurround
 
-
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 'infercase'
@@ -212,6 +214,16 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+
+" Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Set a mark then search with Ack
+nmap <leader>a mA:Ack<space>
+
+" Set a mark, then pull word under cursor into Ack for a global search
+nmap <leader>za mA:Ack "<C-r>=expand("<cword>")<cr>"
+nmap <leader>zA mA:Ack "<C-r>=expand("<cWORD>")<cr>"
 
 
 " ==============================================================================
