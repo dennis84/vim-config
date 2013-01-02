@@ -47,6 +47,7 @@ Bundle 'daveray/vimclojure-easy'
 Bundle 'nono/vim-handlebars'
 Bundle 'groenewege/vim-less'
 Bundle 'Shougo/neocomplcache'
+Bundle 'Lokaltog/vim-powerline'
 
 
 " ==============================================================================
@@ -60,16 +61,13 @@ syntax on
 filetype plugin indent on
 
 " Colorsheme
-
-" Colorsheme
-set t_Co=16
-let g:solarized_termcolors=16
+set t_Co=256
+let g:solarized_termcolors=256
 let g:solarized_termtrans=0
 let g:solarized_menu=0
 let g:solarized_italic=0
 set background=dark
 colorscheme solarized
-"colorscheme Monokai
 
 " Sets a ruler at 80 chars
 set colorcolumn=80
@@ -118,6 +116,9 @@ set mouse=
 set scrolloff=7
 set sidescrolloff=7
 
+" lines to scroll when cursor leaves screen.
+set scrolljump=5
+
 " Case-insensitive searching.
 set ignorecase
 
@@ -133,8 +134,8 @@ set hlsearch
 " Show matching char (like {})
 set showmatch
 
-" Larger console window
-set cmdwinheight=12
+" Shows the statusline.
+set laststatus=2
 
 
 " ==============================================================================
@@ -253,6 +254,7 @@ if has("gui_running")
 
   set background=dark
 endif
+
 
 " ==============================================================================
 " Functions
