@@ -31,15 +31,16 @@ Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'sickill/vim-monokai'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
 Bundle 'ervandew/supertab'
 Bundle 'wojtekmach/vim-rename'
-Bundle 'tpope/vim-surround'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
-Bundle 'tpope/vim-fugitive'
 Bundle 'slack/vim-bufexplorer'
 Bundle 'gre/play2vim'
 Bundle 'altercation/vim-colors-solarized'
@@ -236,27 +237,6 @@ au BufNewFile,BufRead *.twig set filetype=twig
 
 
 " ==============================================================================
-" GVim Options
-" ==============================================================================
-
-if has("gui_running")
-  "remove menu bar
-  set guioptions-=m
-
-  "remove toolbar
-  set guioptions-=T
-
-  "remove right-hand scroll bar
-  set guioptions-=r
-
-  " remove nerdtree scrollbar
-  set guioptions-=L
-
-  set background=dark
-endif
-
-
-" ==============================================================================
 " Functions
 " ==============================================================================
 
@@ -274,4 +254,4 @@ function! CleanCode()
   echo "Cleaned up this mess."
 endfunction
 
-nmap <leader>clean :call CleanCode()<cr>
+nmap <leader>cc :call CleanCode()<cr>
