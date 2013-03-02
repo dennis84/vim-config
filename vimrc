@@ -35,7 +35,6 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
-Bundle 'ervandew/supertab'
 Bundle 'wojtekmach/vim-rename'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -46,9 +45,10 @@ Bundle 'gre/play2vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'daveray/vimclojure-easy'
 Bundle 'groenewege/vim-less'
-Bundle 'Shougo/neocomplcache'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'scrooloose/syntastic'
 
 
 " ==============================================================================
@@ -165,7 +165,7 @@ noremap L $
 " ==============================================================================
 
 " Toggle NerdTree
-map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+map <leader>e :NERDTreeToggle<CR>:NERDTreeMirror<CR>
  
 " Other NerdTree options
 let NERDTreeShowBookmarks=1
@@ -187,21 +187,6 @@ nmap yS  <Plug>YSurround
 nmap yss <Plug>Yssurround
 nmap ySs <Plug>YSsurround
 nmap ySS <Plug>YSsurround
-
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 'infercase'
-let g:neocomplcache_enable_auto_select = 0
-let g:neocomplcache_enable_cursor_hold_i = 1
-let g:neocomplcache_enable_insert_char_pre = 1
-let g:neocomplcache_temporary_dir = '~/.cache/neocon'
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
 " Ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
