@@ -29,7 +29,6 @@ let mapleader = ","
 Bundle 'gmarik/vundle'
 Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
-Bundle 'sickill/vim-monokai'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-repeat'
@@ -46,10 +45,10 @@ Bundle 'slack/vim-bufexplorer'
 Bundle 'gre/play2vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'daveray/vimclojure-easy'
-Bundle 'nono/vim-handlebars'
 Bundle 'groenewege/vim-less'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/ctrlp.vim'
 
 
 " ==============================================================================
@@ -144,12 +143,6 @@ set laststatus=2
 " Key Mappings
 " ==============================================================================
 
-" I am to stupid to understand vims copy and paste from outside so there is
-" the way to copy as in vim with a CTRL before.
-nmap <C-P> "+gP
-imap <C-P> <ESC><C-P>i
-vmap <C-Y> "+y
-
 " Close other windows
 map <leader>wo :only<cr>
 
@@ -159,14 +152,6 @@ map <leader>wh :wincmd h<cr>
 map <leader>wj :wincmd j<cr>
 map <leader>wk :wincmd k<cr>
 map <leader>wl :wincmd l<cr>
-
-" Scales a window 5 rows up and down or left and right with the arrow keys
-" maybe sometimes i will switch to hjkl but at the moment its to strange for
-" me.
-map <C-left> :vertical resize -5<cr>
-map <C-down> :resize +5<cr>
-map <C-up> :resize -5<cr>
-map <C-right> :vertical resize +5<cr>
 
 " Clear search highlight
 nmap <silent> <leader>/ :nohl<cr>
@@ -228,13 +213,19 @@ nmap <leader>a mA:Ack<space>
 nmap <leader>za mA:Ack "<C-r>=expand("<cword>")<cr>"
 nmap <leader>zA mA:Ack "<C-r>=expand("<cWORD>")<cr>"
 
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_map = '<leader>mf'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\.exe$\|\.so$\|\.dll$' }
 
-" ==============================================================================
-" Misc
-" ==============================================================================
-
-" Filetype detection extensions
-au BufNewFile,BufRead *.twig set filetype=twig
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+  \ 'fallback': ''
+  \ }
 
 
 " ==============================================================================
