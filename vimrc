@@ -212,6 +212,9 @@ let g:ctrlp_user_command = {
   \ 'fallback': ''
   \ }
 
+" Syntastic
+let g:syntastic_javascript_jshint_conf = "~/.vim/syntastic/jshint.json"
+
 
 " ==============================================================================
 " Functions
