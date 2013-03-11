@@ -49,6 +49,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
+Bundle 'airblade/vim-gitgutter'
 
 
 " ==============================================================================
