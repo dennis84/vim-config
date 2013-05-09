@@ -69,7 +69,10 @@ let g:solarized_termtrans=0
 let g:solarized_menu=0
 let g:solarized_italic=0
 set background=dark
-colorscheme solarized
+
+if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
+  colorscheme solarized
+endif
 
 " Sets a ruler at 80 chars
 set colorcolumn=80
@@ -138,9 +141,6 @@ set showmatch
 
 " Shows the statusline.
 set laststatus=2
-
-" Eliminating the <Press Enter> message when first bringing up a vim editor.
-set shortmess=at
 
 
 " ==============================================================================
