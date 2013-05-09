@@ -139,6 +139,9 @@ set showmatch
 " Shows the statusline.
 set laststatus=2
 
+" Eliminating the <Press Enter> message when first bringing up a vim editor.
+set shortmess=at
+
 
 " ==============================================================================
 " Key Mappings
