@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 # Define the plugin path.
 my_vim_path="$HOME/vim-config"
