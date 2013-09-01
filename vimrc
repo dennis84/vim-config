@@ -1,15 +1,3 @@
-"  _______         ___ ___ __           
-" |   |   |.--.--.|   |   |__|.--------.
-" |       ||  |  ||   |   |  ||        |
-" |__|_|__||___  | \_____/|__||__|__|__|
-"          |_____|                      
-"
-" My personal Vim config!
-
-" ==============================================================================
-" Initial Stuff
-" ==============================================================================
-
 " Must be first line
 set nocompatible
 filetype off
@@ -21,11 +9,6 @@ call vundle#rc()
 " Sets the mapleader (<leader>) to ,
 let mapleader = ","
 
-
-" ==============================================================================
-" Bundles to install and load
-" ==============================================================================
-
 Bundle 'gmarik/vundle'
 Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
@@ -35,26 +18,18 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
-Bundle 'wojtekmach/vim-rename'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
 Bundle 'slack/vim-bufexplorer'
 Bundle 'gre/play2vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'daveray/vimclojure-easy'
 Bundle 'groenewege/vim-less'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
-Bundle 'airblade/vim-gitgutter'
-
-
-" ==============================================================================
-" Global Stuff
-" ==============================================================================
+Bundle 'itchyny/lightline.vim'
 
 " Enables the syntax highlighting
 syntax on
@@ -139,10 +114,8 @@ set showmatch
 " Shows the statusline.
 set laststatus=2
 
-
-" ==============================================================================
-" Key Mappings
-" ==============================================================================
+" Set utf-8 encoding
+set encoding=utf-8
 
 " Close other windows
 map <leader>wo :only<cr>
@@ -160,10 +133,8 @@ nmap <silent> <leader>/ :nohl<cr>
 noremap H ^
 noremap L $
 
-
-" ==============================================================================
-" Configure Bundles
-" ==============================================================================
+" Show tig
+nmap <silent>ti :!tig status<cr>
 
 " Toggle NerdTree
 map <leader>e :NERDTreeToggle<CR>:NERDTreeMirror<CR>
@@ -176,9 +147,6 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
 
-" Fast, efficient file renaming
-nmap R :let _pfn="<C-R>=expand("%:.")<cr>"<cr>q:iRename <C-R>=expand(_pfn)<cr><esc>^w
-
 " Surround mappings
 let g:surround_no_mappings = 1
 nmap ds  <Plug>Dsurround
@@ -189,15 +157,8 @@ nmap yss <Plug>Yssurround
 nmap ySs <Plug>YSsurround
 nmap ySS <Plug>YSsurround
 
-" Ack
+" repace ack with ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
-
-" Set a mark then search with Ack
-nmap <leader>a mA:Ack<space>
-
-" Set a mark, then pull word under cursor into Ack for a global search
-nmap <leader>za mA:Ack "<C-r>=expand("<cword>")<cr>"
-nmap <leader>zA mA:Ack "<C-r>=expand("<cWORD>")<cr>"
 
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_map = '<leader>mf'
@@ -213,13 +174,12 @@ let g:ctrlp_user_command = {
   \ 'fallback': ''
   \ }
 
+let g:lightline = {
+  \ 'colorscheme': 'solarized',
+  \ }
+
 " Syntastic
 let g:syntastic_javascript_jshint_conf = "~/.vim/syntastic/jshint.json"
-
-
-" ==============================================================================
-" Functions
-" ==============================================================================
 
 " Cleans the code. Replaces tabs with spaces, fixes the line returns and
 " deletes end of line blanks.
@@ -236,3 +196,8 @@ function! CleanCode()
 endfunction
 
 nmap <leader>cc :call CleanCode()<cr>
+
+" set bash shell if fish-shell is active
+if $SHELL =~ '/usr/bin/fish'
+  set shell=/bin/sh
+endif
