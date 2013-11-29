@@ -30,6 +30,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Bundle 'itchyny/lightline.vim'
+Bundle 'rodjek/vim-puppet'
+Bundle 'dennis84/vim-collab'
 
 " Enables the syntax highlighting
 syntax on
@@ -199,6 +201,16 @@ function! CleanCode()
 endfunction
 
 nmap <leader>cc :call CleanCode()<cr>
+
+function! Ranger()
+  silent !ranger --choosefile=/tmp/chosen
+  if filereadable('/tmp/chosen')
+    exec 'edit ' . system('cat /tmp/chosen')
+    call system('rm /tmp/chosen')
+  endif
+  redraw!
+endfunction
+nmap <leader>R :call Ranger()<cr>
 
 " set bash shell if fish-shell is active
 if $SHELL =~ '/usr/bin/fish'
