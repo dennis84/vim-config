@@ -10,8 +10,7 @@ call vundle#rc()
 let mapleader = ","
 
 Bundle 'gmarik/vundle'
-Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-fugitive'
+Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-repeat'
@@ -20,16 +19,15 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
 Bundle 'slack/vim-bufexplorer'
-Bundle 'gre/play2vim'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'daveray/vimclojure-easy'
 Bundle 'groenewege/vim-less'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'Shougo/neocomplete.vim'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/unite-outline'
+Bundle 'tsukkee/unite-tag'
 Bundle 'scrooloose/syntastic'
-Bundle 'itchyny/lightline.vim'
+Bundle 'bling/vim-airline'
 Bundle 'rodjek/vim-puppet'
 Bundle 'dennis84/vim-collab'
 
@@ -162,29 +160,22 @@ nmap yss <Plug>Yssurround
 nmap ySs <Plug>YSsurround
 nmap ySS <Plug>YSsurround
 
-" repace ack with ag
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_map = '<leader>mf'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-  \ 'file': '\.exe$\|\.so$\|\.dll$' }
-
-let g:ctrlp_user_command = {
-  \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files'],
-    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-    \ },
-  \ 'fallback': ''
-  \ }
-
-let g:lightline = {
-  \ 'colorscheme': 'solarized',
-  \ }
-
 " Syntastic
 let g:syntastic_javascript_jshint_conf = "~/.vim/syntastic/jshint.json"
+
+" neocomplete
+let g:neocomplete#enable_at_startup = 1
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Unite
+nnoremap <leader>mf :<C-u>Unite -no-split -start-insert file_rec<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -start-insert outline<cr>
+nnoremap <leader>t :<C-u>Unite -no-split -start-insert tag<cr>
+autocmd BufEnter *
+\  if empty(&buftype)
+\|   nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<cr>
+\| endif
 
 " Cleans the code. Replaces tabs with spaces, fixes the line returns and
 " deletes end of line blanks.
@@ -201,16 +192,6 @@ function! CleanCode()
 endfunction
 
 nmap <leader>cc :call CleanCode()<cr>
-
-function! Ranger()
-  silent !ranger --choosefile=/tmp/chosen
-  if filereadable('/tmp/chosen')
-    exec 'edit ' . system('cat /tmp/chosen')
-    call system('rm /tmp/chosen')
-  endif
-  redraw!
-endfunction
-nmap <leader>R :call Ranger()<cr>
 
 " set bash shell if fish-shell is active
 if $SHELL =~ '/usr/bin/fish'
