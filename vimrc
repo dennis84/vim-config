@@ -19,7 +19,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'slack/vim-bufexplorer'
+Bundle 'jlanzarotta/bufexplorer'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'groenewege/vim-less'
 Bundle 'Shougo/neocomplete.vim'
@@ -194,6 +194,6 @@ endfunction
 nmap <leader>cc :call CleanCode()<cr>
 
 " set bash shell if fish-shell is active
-if $SHELL =~ '/usr/bin/fish'
+if $SHELL =~ 'fish'
   set shell=/bin/sh
 endif
