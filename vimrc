@@ -41,11 +41,6 @@ syntax on
 filetype plugin indent on
 
 " Colorsheme
-set t_Co=16
-let g:solarized_termcolors=16
-let g:solarized_termtrans=0
-let g:solarized_menu=0
-let g:solarized_italic=0
 set background=dark
 
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))

@@ -1,9 +1,0 @@
-#!/bin/sh
-
-scala -cp ~/.vim/bin/scalariform.jar scalariform.commandline.Main \
-+alignSingleLineCaseStatements \
-+compactControlReadability \
-+doubleIndentClassDeclaration \
-+rewriteArrowSymbols \
-+preserveDanglingCloseParenthesis \
-"$@"
