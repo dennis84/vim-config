@@ -118,6 +118,8 @@ set laststatus=2
 " Set utf-8 encoding
 set encoding=utf-8
 
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.jar,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,**/cache/*,**/logs/*,**/target/*,*.hi,tags,**/dist/*,**/public/**/vendor/**,**/public/vendor/**,**/node_modules/**
+
 " Close other windows
 map <leader>wo :only<cr>
 
@@ -174,6 +176,9 @@ autocmd BufEnter *
 \  if empty(&buftype)
 \|   nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<cr>
 \| endif
+
+" CTAGS
+nmap <leader>ct :!ctags -R .&<cr><cr>
 
 " Cleans the code. Replaces tabs with spaces, fixes the line returns and
 " deletes end of line blanks.
