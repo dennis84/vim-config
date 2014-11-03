@@ -11,7 +11,6 @@ let mapleader = ","
 
 Bundle 'gmarik/vundle'
 Bundle 'rking/ag.vim'
-Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
@@ -20,7 +19,6 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-fireplace'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'jlanzarotta/bufexplorer'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'groenewege/vim-less'
 Bundle 'Shougo/neocomplete.vim'
@@ -118,7 +116,7 @@ set laststatus=2
 " Set utf-8 encoding
 set encoding=utf-8
 
-set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.jar,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,**/cache/*,**/logs/*,**/target/*,*.hi,tags,**/dist/*,**/public/**/vendor/**,**/public/vendor/**,**/node_modules/**
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.jar,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,**/cache/*,**/logs/*,**/target/*,*.hi,tags,**/dist/*,**/node_modules/**,**/vendor/**
 
 " Close other windows
 map <leader>wo :only<cr>
@@ -139,17 +137,6 @@ noremap L $
 " Show tig
 nmap <silent>ti :!tig status<cr>
 
-" Toggle NerdTree
-map <leader>e :NERDTreeToggle<CR>:NERDTreeMirror<CR>
- 
-" Other NerdTree options
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
-
 " Surround mappings
 let g:surround_no_mappings = 1
 nmap ds  <Plug>Dsurround
@@ -169,13 +156,12 @@ let g:neocomplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Unite
-nnoremap <leader>mf :<C-u>Unite -no-split -start-insert file_rec<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -start-insert outline<cr>
-nnoremap <leader>t :<C-u>Unite -no-split -start-insert tag<cr>
-autocmd BufEnter *
-\  if empty(&buftype)
-\|   nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<cr>
-\| endif
+nnoremap <leader>p :Unite -no-split -start-insert file_rec<cr>
+nnoremap <leader>o :Unite -no-split -start-insert outline<cr>
+nnoremap <leader>t :Unite -no-split -start-insert tag<cr>
+nnoremap <leader>s :Unite -no-split -start-insert buffer<cr>
+call unite#custom#source('file_rec', 'ignore_globs', split(&wildignore, ','))
+call unite#custom#source('file_rec', 'sorters', 'sorter_length')
 
 " CTAGS
 nmap <leader>ct :!ctags -R .&<cr><cr>
