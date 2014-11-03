@@ -116,7 +116,9 @@ set laststatus=2
 " Set utf-8 encoding
 set encoding=utf-8
 
-set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.jar,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,**/cache/*,**/logs/*,**/target/*,*.hi,tags,**/dist/*,**/node_modules/**,**/vendor/**
+set wildmenu
+set wildignore=.git,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,*.hi,tags
+set wildignore+=**/cache/*,**/logs/*,**/target/*,**/dist/*,**/node_modules/*,**/vendor/*
 
 " Close other windows
 map <leader>wo :only<cr>
@@ -127,6 +129,15 @@ map <leader>wh :wincmd h<cr>
 map <leader>wj :wincmd j<cr>
 map <leader>wk :wincmd k<cr>
 map <leader>wl :wincmd l<cr>
+
+" Delete buffer
+nmap <leader>wd :bd<cr>
+
+" Delete buffer and file
+nmap <leader>wD :!rm %<cr>:bd!<cr>
+
+" Expand current file dir in console mode
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Clear search highlight
 nmap <silent> <leader>/ :nohl<cr>
