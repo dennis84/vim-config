@@ -17,6 +17,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-vinegar'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'altercation/vim-colors-solarized'
@@ -24,6 +25,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/unite-outline'
+Bundle 'Shougo/vimproc.vim'
 Bundle 'tsukkee/unite-tag'
 Bundle 'scrooloose/syntastic'
 Bundle 'bling/vim-airline'
@@ -167,12 +169,16 @@ let g:neocomplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Unite
-nnoremap <leader>p :Unite -no-split -start-insert file_rec<cr>
-nnoremap <leader>o :Unite -no-split -start-insert outline<cr>
-nnoremap <leader>t :Unite -no-split -start-insert tag<cr>
-nnoremap <leader>s :Unite -no-split -start-insert buffer<cr>
-call unite#custom#source('file_rec', 'ignore_globs', split(&wildignore, ','))
-call unite#custom#source('file_rec', 'sorters', 'sorter_length')
+let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup -g ""'
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+
+nnoremap <leader>p :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -start-insert outline<cr>
+nnoremap <leader>t :<C-u>Unite -no-split -start-insert tag<cr>
+nnoremap <leader>s :<C-u>Unite -no-split -start-insert buffer<cr>
+
+nmap <leader>rr :redraw!<cr>
 
 " CTAGS
 nmap <leader>ct :!ctags -R .&<cr><cr>
