@@ -2,37 +2,38 @@
 set nocompatible
 filetype off
 
-" Setup vundle bundle manager
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'tpope/vim-vinegar'
+NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/vimproc.vim', {'build': {'mac': 'make -f make_mac.mak'}}
+NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'rodjek/vim-puppet'
+NeoBundle 'guns/vim-clojure-highlight'
+NeoBundle 'guns/vim-clojure-static'
+NeoBundle 'dennis84/vim-collab'
+
+call neobundle#end()
 
 " Sets the mapleader (<leader>) to ,
 let mapleader = ","
-
-Bundle 'gmarik/vundle'
-Bundle 'rking/ag.vim'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-vinegar'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'groenewege/vim-less'
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/unite-outline'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'tsukkee/unite-tag'
-Bundle 'scrooloose/syntastic'
-Bundle 'bling/vim-airline'
-Bundle 'rodjek/vim-puppet'
-Bundle 'guns/vim-clojure-highlight'
-Bundle 'guns/vim-clojure-static'
-Bundle 'dennis84/vim-collab'
 
 " Enables the syntax highlighting
 syntax on
