@@ -21,7 +21,7 @@ NeoBundle 'groenewege/vim-less'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/vimproc.vim', {'build': {'mac': 'make -f make_mac.mak'}}
+NeoBundle 'Shougo/vimproc.vim', {'build' : {'mac': 'make', 'linux': 'make'}}
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'bling/vim-airline'
