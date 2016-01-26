@@ -29,6 +29,7 @@ NeoBundle 'rodjek/vim-puppet'
 NeoBundle 'guns/vim-clojure-highlight'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'dennis84/vim-collab'
+NeoBundle 'wavded/vim-stylus'
 
 call neobundle#end()
 
@@ -42,11 +43,12 @@ syntax on
 filetype plugin indent on
 
 " Colorsheme
-set background=dark
 
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
   colorscheme solarized
 endif
+
+set background=light
 
 " Sets a ruler at 80 chars
 set colorcolumn=80
@@ -121,7 +123,10 @@ set encoding=utf-8
 
 set wildmenu
 set wildignore=.git,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,*.hi,tags
-set wildignore+=**/cache/*,**/logs/*,**/target/*,**/dist/*,**/node_modules/*,**/vendor/*
+set wildignore+=**/cache/*,**/logs/*,**/target/*,**/dist/*,**/node_modules/*
+
+" Allow per-project configuration
+set exrc
 
 " Close other windows
 map <leader>wo :only<cr>
@@ -170,7 +175,8 @@ let g:neocomplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Unite
-let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup -g ""'
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 
