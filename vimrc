@@ -17,15 +17,13 @@ NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimproc.vim', {'build' : {'mac': 'make', 'linux': 'make'}}
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'rodjek/vim-puppet'
 NeoBundle 'guns/vim-clojure-highlight'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'dennis84/vim-collab'
@@ -169,10 +167,10 @@ nmap ySS <Plug>YSsurround
 " Syntastic
 let g:syntastic_javascript_jshint_conf = "~/.vim/syntastic/jshint.json"
 
-" neocomplete
-let g:neocomplete#enable_at_startup = 1
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" deoplete
+let g:deoplete#enable_at_startup = 1
+" TAB completion
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Unite
 let g:unite_source_grep_command = 'ag'
@@ -184,6 +182,16 @@ nnoremap <leader>p :<C-u>Unite -no-split -buffer-name=files -start-insert file_r
 nnoremap <leader>o :<C-u>Unite -no-split -start-insert outline<cr>
 nnoremap <leader>t :<C-u>Unite -no-split -start-insert tag<cr>
 nnoremap <leader>s :<C-u>Unite -no-split -start-insert buffer<cr>
+
+" Unite-tag
+let g:unite_source_tag_max_name_length = 25
+let g:unite_source_tag_max_fname_length = 80
+let g:unite_source_tag_show_kind = 0
+let g:unite_source_tag_show_location = 0
+autocmd BufEnter *
+\   if empty(&buftype)
+\|      nnoremap <buffer> <leader>] :<C-u>UniteWithCursorWord -immediately tag<CR>
+\|  endif
 
 nmap <leader>rr :redraw!<cr>
 
