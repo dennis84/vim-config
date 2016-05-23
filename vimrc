@@ -28,6 +28,7 @@ NeoBundle 'guns/vim-clojure-highlight'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'dennis84/vim-collab'
 NeoBundle 'wavded/vim-stylus'
+NeoBundle 'rust-lang/rust.vim'
 
 call neobundle#end()
 
