@@ -5,10 +5,6 @@ if [ ! -e ~/vim-config/bundle/neobundle.vim ]; then
   git clone https://github.com/Shougo/neobundle.vim ~/vim-config/bundle/neobundle.vim
 fi
 
-if [ -e ~/.vimrc ] || [ -e ~/.vim ]; then
-  echo "Symlinks cannot be created."
-  exit 1
-fi
-
-ln -s ~/vim-config/vimrc ~/.vimrc
-ln -s ~/vim-config/ ~/.vim
+mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+ln -s ~/.vim $XDG_CONFIG_HOME/nvim
+ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim

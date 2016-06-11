@@ -1,3 +1,3 @@
-imap cll console.log()<Esc>==f(a
+imap cll console.log()<Esc>i
 vmap cll yocll<Esc>p
 nmap cll yiwocll<Esc>p
