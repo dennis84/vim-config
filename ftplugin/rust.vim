@@ -1,3 +1,3 @@
-imap pll println!("{:?}", );<Esc>hi
-vmap pll yopll<Esc>p
-nmap pll yiwopll<Esc>p
+imap cll println!("{:?}", );<Esc>hi
+vmap cll yocll<Esc>p
+nmap cll yiwocll<Esc>p
