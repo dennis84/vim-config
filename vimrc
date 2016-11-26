@@ -22,13 +22,13 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimproc.vim', {'build' : {'mac': 'make', 'linux': 'make'}}
 NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'guns/vim-clojure-highlight'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'dennis84/vim-collab'
 NeoBundle 'wavded/vim-stylus'
 NeoBundle 'rust-lang/rust.vim'
+NeoBundle 'w0rp/ale'
 
 call neobundle#end()
 
@@ -47,7 +47,7 @@ if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"
   colorscheme solarized
 endif
 
-set background=light
+set background=dark
 
 " Sets a ruler at 80 chars
 set colorcolumn=80
@@ -164,9 +164,6 @@ nmap yS  <Plug>YSurround
 nmap yss <Plug>Yssurround
 nmap ySs <Plug>YSsurround
 nmap ySS <Plug>YSsurround
-
-" Syntastic
-let g:syntastic_javascript_jshint_conf = "~/.vim/syntastic/jshint.json"
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
