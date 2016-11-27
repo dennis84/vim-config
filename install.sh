@@ -1,10 +1,12 @@
 #!/bin/sh
 
-if [ ! -e ~/vim-config/bundle/neobundle.vim ]; then
-  mkdir -p ~/vim-config/bundle
-  git clone https://github.com/Shougo/neobundle.vim ~/vim-config/bundle/neobundle.vim
+script_path="$(cd "$(dirname "$0")"; pwd -P)"
+
+if [ ! -e "$script_path/autoload/plug.vim" ]; then
+  curl -fLo "$script_path/autoload/plug.vim" --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
-ln -s ~/.vim $XDG_CONFIG_HOME/nvim
-ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
+mkdir -p ~/.config
+
+ln -s "$script_path" ~/.config/nvim

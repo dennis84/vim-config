@@ -2,33 +2,29 @@
 set nocompatible
 filetype off
 
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'tpope/vim-vinegar'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'Shougo/deoplete.nvim'
-NeoBundle 'Shougo/denite.nvim'
-NeoBundle 'Shougo/neoyank.vim'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'guns/vim-clojure-highlight'
-NeoBundle 'guns/vim-clojure-static'
-NeoBundle 'dennis84/vim-collab'
-NeoBundle 'wavded/vim-stylus'
-NeoBundle 'rust-lang/rust.vim'
-NeoBundle 'w0rp/ale'
-
-call neobundle#end()
+call plug#begin('~/.vim/plugged')
+Plug 'rking/ag.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-vinegar'
+Plug 'derekwyatt/vim-scala'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'altercation/vim-colors-solarized'
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/denite.nvim'
+Plug 'Shougo/neoyank.vim'
+Plug 'bling/vim-airline'
+Plug 'guns/vim-clojure-highlight'
+Plug 'guns/vim-clojure-static'
+Plug 'dennis84/vim-collab'
+Plug 'wavded/vim-stylus'
+Plug 'rust-lang/rust.vim'
+Plug 'w0rp/ale'
+call plug#end()
 
 " Sets the mapleader (<leader>) to ,
 let mapleader = ","
@@ -41,7 +37,7 @@ filetype plugin indent on
 
 " Colorsheme
 
-if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
+if filereadable(expand("~/.vim/plugged/vim-colors-solarized/colors/solarized.vim"))
   colorscheme solarized
 endif
 

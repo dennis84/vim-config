@@ -1,1 +1,4 @@
 /bundle/*
+/plugged/*
+/autoload/plug.vim
+.netrwhist
