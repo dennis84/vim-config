@@ -18,10 +18,8 @@ NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'Shougo/deoplete.nvim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/vimproc.vim', {'build' : {'mac': 'make', 'linux': 'make'}}
-NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'Shougo/denite.nvim'
+NeoBundle 'Shougo/neoyank.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'guns/vim-clojure-highlight'
 NeoBundle 'guns/vim-clojure-static'
@@ -171,31 +169,17 @@ let g:deoplete#enable_at_startup = 1
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Unite
-let g:unite_source_file_rec_max_cache_files = 0
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
+call denite#custom#var('file_rec', 'command',
+  \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+call denite#custom#source(
+  \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
+call denite#custom#source(
+  \ 'file_rec', 'sorters', ['sorter_sublime'])
 
-nnoremap <leader>p :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -start-insert outline<cr>
-nnoremap <leader>t :<C-u>Unite -no-split -start-insert tag<cr>
-nnoremap <leader>s :<C-u>Unite -no-split -start-insert buffer<cr>
-
-" Unite-tag
-let g:unite_source_tag_max_name_length = 25
-let g:unite_source_tag_max_fname_length = 80
-let g:unite_source_tag_show_kind = 0
-let g:unite_source_tag_show_location = 0
-autocmd BufEnter *
-\   if empty(&buftype)
-\|      nnoremap <buffer> <leader>] :<C-u>UniteWithCursorWord -immediately tag<CR>
-\|  endif
-
-nmap <leader>rr :redraw!<cr>
-
-" CTAGS
-nmap <leader>ct :!ctags -R .&<cr><cr>
+nnoremap <leader>p :<C-u>Denite file_rec<cr>
+nnoremap <leader>s :<C-u>Denite buffer<cr>
+nnoremap <leader>y :<C-u>Denite neoyank<cr>
+nnoremap <leader>l :<C-u>Denite line<cr>
 
 " Cleans the code. Replaces tabs with spaces, fixes the line returns and
 " deletes end of line blanks.
