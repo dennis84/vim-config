@@ -4,6 +4,7 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 Plug 'rking/ag.vim'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -49,9 +50,6 @@ set colorcolumn=80
 " Use spaces then tabs
 set expandtab
 
-" Enables auto indentation
-set autoindent
-
 " Sets smartindent
 set smartindent
 
@@ -63,9 +61,6 @@ set softtabstop=2
 
 " I dont know what that is doing
 set shiftwidth=2
-
-" Intuitive backspacing.
-set backspace=indent,eol,start
 
 " Enables line numbers
 set number
@@ -86,10 +81,6 @@ set visualbell
 " Disable the mouse.
 set mouse=
 
-" Show 7 lines of context around the cursor.
-set scrolloff=7
-set sidescrolloff=7
-
 " lines to scroll when cursor leaves screen.
 set scrolljump=5
 
@@ -99,22 +90,12 @@ set ignorecase
 " But case-sensitive if expression contains a capital letter.
 set smartcase
 
-" Highlight matches as you type.
-set incsearch
-
 " Highlight matches.
 set hlsearch
 
 " Show matching char (like {})
 set showmatch
 
-" Shows the statusline.
-set laststatus=2
-
-" Set utf-8 encoding
-set encoding=utf-8
-
-set wildmenu
 set wildignore=.git,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,*.hi,tags
 set wildignore+=**/cache/*,**/logs/*,**/target/*,**/dist/*,**/node_modules/*
 
