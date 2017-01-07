@@ -158,6 +158,20 @@ nnoremap <leader>s :<C-u>Denite buffer<cr>
 nnoremap <leader>y :<C-u>Denite neoyank<cr>
 nnoremap <leader>l :<C-u>Denite line<cr>
 
+call denite#custom#map(
+  \ '_',
+  \ '<Tab>',
+  \ '<denite:move_to_next_line>',
+  \ 'noremap'
+  \)
+
+call denite#custom#map(
+  \ '_',
+  \ '<S-Tab>',
+  \ '<denite:move_to_previous_line>',
+  \ 'noremap'
+  \)
+
 " Cleans the code. Replaces tabs with spaces, fixes the line returns and
 " deletes end of line blanks.
 function! CleanCode()
