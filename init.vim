@@ -10,17 +10,13 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-vinegar'
 Plug 'derekwyatt/vim-scala'
-Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'altercation/vim-colors-solarized'
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neoyank.vim'
 Plug 'bling/vim-airline'
-Plug 'guns/vim-clojure-highlight'
-Plug 'guns/vim-clojure-static'
 Plug 'dennis84/vim-collab'
 Plug 'wavded/vim-stylus'
 Plug 'rust-lang/rust.vim'
@@ -37,7 +33,6 @@ syntax on
 filetype plugin indent on
 
 " Colorsheme
-
 if filereadable(expand("~/.vim/plugged/vim-colors-solarized/colors/solarized.vim"))
   colorscheme solarized
 endif
@@ -127,8 +122,8 @@ nmap <silent> <leader>/ :nohl<cr>
 noremap H ^
 noremap L $
 
-" Show tig
-nmap <silent>ti :!tig status<cr>
+" TAB completion
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Surround mappings
 let g:surround_no_mappings = 1
@@ -142,8 +137,6 @@ nmap ySS <Plug>YSsurround
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
-" TAB completion
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Unite
 call denite#custom#var('file_rec', 'command',
@@ -160,15 +153,8 @@ nnoremap <leader>l :<C-u>Denite line<cr>
 
 call denite#custom#map(
   \ '_',
-  \ '<Tab>',
-  \ '<denite:move_to_next_line>',
-  \ 'noremap'
-  \)
-
-call denite#custom#map(
-  \ '_',
-  \ '<S-Tab>',
-  \ '<denite:move_to_previous_line>',
+  \ '<Esc>',
+  \ '<denite:enter_mode:normal>',
   \ 'noremap'
   \)
 
