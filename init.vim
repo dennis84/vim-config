@@ -141,10 +141,6 @@ let g:deoplete#enable_at_startup = 1
 " Unite
 call denite#custom#var('file_rec', 'command',
   \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-call denite#custom#source(
-  \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
-call denite#custom#source(
-  \ 'file_rec', 'sorters', ['sorter_sublime'])
 
 nnoremap <leader>p :<C-u>Denite file_rec<cr>
 nnoremap <leader>s :<C-u>Denite buffer<cr>
