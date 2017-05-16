@@ -174,3 +174,7 @@ nmap <leader>cc :call CleanCode()<cr>
 if $SHELL =~ 'fish'
   set shell=/bin/sh
 endif
+
+let g:ale_linters = {
+\  'javascript': ['eslint'],
+\}
