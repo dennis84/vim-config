@@ -3,24 +3,34 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
-Plug 'rking/ag.vim'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-vinegar'
-Plug 'derekwyatt/vim-scala'
-Plug 'altercation/vim-colors-solarized'
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/neoyank.vim'
-Plug 'bling/vim-airline'
-Plug 'dennis84/vim-collab'
-Plug 'wavded/vim-stylus'
-Plug 'rust-lang/rust.vim'
-Plug 'w0rp/ale'
+Plug 'rking/ag.vim'                     " AG for vim
+Plug 'tpope/vim-sensible'               " a universal set of defaults
+Plug 'tpope/vim-commentary'             " Comment in and out
+" Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'               " surround parentheses, brackets, quotes, ...
+Plug 'tpope/vim-fugitive'               " Git tool
+Plug 'tpope/vim-vinegar'                " Open netrw with -
+Plug 'Shougo/deoplete.nvim'             " completion framework
+Plug 'Shougo/denite.nvim'               " fuzzy finder
+Plug 'Shougo/neoyank.vim'               " Saves yank history
+Plug 'bling/vim-airline'                " Status bar
+Plug 'w0rp/ale'                         " Linter
+"Plug 'mattn/webapi-vim'                 " VIM web client
+"Plug '~/projects/vim-scastie'
+Plug 'andymass/vim-matchup'             " highlight matching words
+Plug 'ntpeters/vim-better-whitespace'   " highlight trailing whitespace
+Plug 'farmergreg/vim-lastplace'         " reopen files at your last edit position
+Plug 'rstacruz/vim-closer'              " Closes brackets
+Plug 'dracula/vim'                      " Colortheme
+Plug 'soft-aesthetic/soft-era-vim'      " Colortheme
+Plug 'tpope/vim-markdown'               " Markdown syntax
+Plug 'derekwyatt/vim-scala'             " Scala syntax
+Plug 'wavded/vim-stylus'                " Stylus syntax
+Plug 'rust-lang/rust.vim'               " Rust syntax
+Plug 'mustache/vim-mustache-handlebars' " Handlebars syntax
+Plug 'leafgarland/typescript-vim'       " Typescriptt syntax
+Plug 'udalov/kotlin-vim'                " Kotlin syntax
+Plug 'gre/play2vim'                     " Playframework (twirl) syntax
 call plug#end()
 
 " Sets the mapleader (<leader>) to ,
@@ -33,11 +43,9 @@ syntax on
 filetype plugin indent on
 
 " Colorsheme
-if filereadable(expand("~/.vim/plugged/vim-colors-solarized/colors/solarized.vim"))
-  colorscheme solarized
-endif
-
-set background=dark
+colorscheme soft-era
+"set background=light
+hi Normal ctermbg=none
 
 " Sets a ruler at 80 chars
 set colorcolumn=80
@@ -92,7 +100,7 @@ set hlsearch
 set showmatch
 
 set wildignore=.git,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,*.hi,tags
-set wildignore+=**/cache/*,**/logs/*,**/target/*,**/dist/*,**/node_modules/*
+set wildignore+=**/logs/*,**/target/*,**/dist/*,**/node_modules/*
 
 " Allow per-project configuration
 set exrc
@@ -177,4 +185,6 @@ endif
 
 let g:ale_linters = {
 \  'javascript': ['eslint'],
+\  'java': [],
+\  'scala': [],
 \}
