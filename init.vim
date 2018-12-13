@@ -31,6 +31,8 @@ Plug 'mustache/vim-mustache-handlebars' " Handlebars syntax
 Plug 'leafgarland/typescript-vim'       " Typescriptt syntax
 Plug 'udalov/kotlin-vim'                " Kotlin syntax
 Plug 'gre/play2vim'                     " Playframework (twirl) syntax
+Plug 'elixir-editors/vim-elixir'
+Plug 'dennis84/cll'
 call plug#end()
 
 " Sets the mapleader (<leader>) to ,
