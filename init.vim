@@ -15,8 +15,6 @@ Plug 'Shougo/denite.nvim'               " fuzzy finder
 Plug 'Shougo/neoyank.vim'               " Saves yank history
 Plug 'bling/vim-airline'                " Status bar
 Plug 'w0rp/ale'                         " Linter
-"Plug 'mattn/webapi-vim'                 " VIM web client
-"Plug '~/projects/vim-scastie'
 Plug 'andymass/vim-matchup'             " highlight matching words
 Plug 'ntpeters/vim-better-whitespace'   " highlight trailing whitespace
 Plug 'farmergreg/vim-lastplace'         " reopen files at your last edit position
@@ -32,7 +30,9 @@ Plug 'leafgarland/typescript-vim'       " Typescriptt syntax
 Plug 'udalov/kotlin-vim'                " Kotlin syntax
 Plug 'gre/play2vim'                     " Playframework (twirl) syntax
 Plug 'elixir-editors/vim-elixir'
+Plug 'mattn/webapi-vim'                 " VIM web client
 Plug 'dennis84/cll'
+Plug 'dennis84/vim-scastie'
 call plug#end()
 
 " Sets the mapleader (<leader>) to ,
