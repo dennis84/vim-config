@@ -46,6 +46,9 @@ filetype plugin indent on
 
 " Colorsheme
 colorscheme soft-era
+
+highlight Comment cterm=italic
+
 "set background=light
 hi Normal ctermbg=none
 
