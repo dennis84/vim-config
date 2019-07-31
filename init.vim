@@ -6,7 +6,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'rking/ag.vim'                     " AG for vim
 Plug 'tpope/vim-sensible'               " a universal set of defaults
 Plug 'tpope/vim-commentary'             " Comment in and out
-" Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'               " surround parentheses, brackets, quotes, ...
 Plug 'tpope/vim-fugitive'               " Git tool
 Plug 'tpope/vim-vinegar'                " Open netrw with -
@@ -33,6 +32,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'mattn/webapi-vim'                 " VIM web client
 Plug 'dennis84/cll'
 Plug 'dennis84/vim-scastie'
+Plug 'unblevable/quick-scope'
 call plug#end()
 
 " Sets the mapleader (<leader>) to ,
@@ -110,6 +110,9 @@ set wildignore+=**/logs/*,**/target/*,**/dist/*,**/node_modules/*
 " Allow per-project configuration
 set exrc
 
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
 " Close other windows
 map <leader>wo :only<cr>
 
@@ -138,6 +141,8 @@ noremap L $
 " TAB completion
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
+command! MakeTags !ctags -R .
+
 " Surround mappings
 let g:surround_no_mappings = 1
 nmap ds  <Plug>Dsurround
@@ -151,21 +156,79 @@ nmap ySS <Plug>YSsurround
 " deoplete
 let g:deoplete#enable_at_startup = 1
 
-" Unite
-call denite#custom#var('file_rec', 'command',
+" Denite
+
+" Define mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
+
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+  imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
+endfunction
+
+call denite#custom#var('file/rec', 'command',
   \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 
-nnoremap <leader>p :<C-u>Denite file_rec<cr>
+" Change matchers.
+call denite#custom#source(
+  \ 'file_mru', 'matchers', ['matcher/fuzzy', 'matcher/project_files'])
+call denite#custom#source(
+  \ 'file/rec', 'matchers', ['matcher/cpsm'])
+
+" Change sorters.
+call denite#custom#source(
+  \ 'file/rec', 'sorters', ['sorter/sublime'])
+
+" Ag command on grep source
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts',
+  \ ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+" Define alias
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command',
+ \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
+call denite#custom#alias('source', 'file/rec/py', 'file/rec')
+call denite#custom#var('file/rec/py', 'command',['scantree.py'])
+
+" Change ignore_globs
+call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
+ \ [ '.git/', '.ropeproject/', '__pycache__/',
+ \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
+
+call denite#custom#option('default', {
+ \ 'auto_resize': 1,
+ \ 'auto_resume': 1,
+ \ 'winheight': 15,
+ \ 'winminheight': -1,
+ \ 'reversed': 0,
+ \ 'prompt': '❯',
+ \ 'start_filter': 1,
+ \ })
+
+nnoremap <leader>p :<C-u>Denite file/rec<cr>
 nnoremap <leader>s :<C-u>Denite buffer<cr>
 nnoremap <leader>y :<C-u>Denite neoyank<cr>
 nnoremap <leader>l :<C-u>Denite line<cr>
-
-call denite#custom#map(
-  \ '_',
-  \ '<Esc>',
-  \ '<denite:enter_mode:normal>',
-  \ 'noremap'
-  \)
 
 " Cleans the code. Replaces tabs with spaces, fixes the line returns and
 " deletes end of line blanks.
@@ -190,6 +253,8 @@ endif
 
 let g:ale_linters = {
 \  'javascript': ['eslint'],
-\  'java': [],
 \  'scala': [],
+\  'java': ['checkstyle'],
 \}
+
+let g:ale_java_checkstyle_config = '~/checkstyle.xml'
