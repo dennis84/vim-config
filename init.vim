@@ -9,9 +9,9 @@ Plug 'tpope/vim-commentary'             " Comment in and out
 Plug 'tpope/vim-surround'               " surround parentheses, brackets, quotes, ...
 Plug 'tpope/vim-fugitive'               " Git tool
 Plug 'tpope/vim-vinegar'                " Open netrw with -
-Plug 'Shougo/deoplete.nvim'             " completion framework
-Plug 'Shougo/denite.nvim'               " fuzzy finder
-Plug 'Shougo/neoyank.vim'               " Saves yank history
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bling/vim-airline'                " Status bar
 Plug 'w0rp/ale'                         " Linter
 Plug 'andymass/vim-matchup'             " highlight matching words
@@ -141,7 +141,7 @@ noremap L $
 " TAB completion
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
-command! MakeTags !ctags -R .
+command! MakeTags !/usr/local/bin/ctags -R .
 
 " Surround mappings
 let g:surround_no_mappings = 1
@@ -153,82 +153,11 @@ nmap yss <Plug>Yssurround
 nmap ySs <Plug>YSsurround
 nmap ySS <Plug>YSsurround
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
+" FZF
+nnoremap <silent> <Leader>p :FZF<CR>
+nnoremap <silent> <Leader>s :Buffers<CR>
 
-" Denite
-
-" Define mappings
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> d
-  \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-  \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> q
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> i
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <Space>
-  \ denite#do_map('toggle_select').'j'
-endfunction
-
-autocmd FileType denite-filter call s:denite_filter_my_settings()
-function! s:denite_filter_my_settings() abort
-  imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
-endfunction
-
-call denite#custom#var('file/rec', 'command',
-  \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-
-" Change matchers.
-call denite#custom#source(
-  \ 'file_mru', 'matchers', ['matcher/fuzzy', 'matcher/project_files'])
-call denite#custom#source(
-  \ 'file/rec', 'matchers', ['matcher/cpsm'])
-
-" Change sorters.
-call denite#custom#source(
-  \ 'file/rec', 'sorters', ['sorter/sublime'])
-
-" Ag command on grep source
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts',
-  \ ['-i', '--vimgrep'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-
-" Define alias
-call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-call denite#custom#var('file/rec/git', 'command',
- \ ['git', 'ls-files', '-co', '--exclude-standard'])
-
-call denite#custom#alias('source', 'file/rec/py', 'file/rec')
-call denite#custom#var('file/rec/py', 'command',['scantree.py'])
-
-" Change ignore_globs
-call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
- \ [ '.git/', '.ropeproject/', '__pycache__/',
- \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
-
-call denite#custom#option('default', {
- \ 'auto_resize': 1,
- \ 'auto_resume': 1,
- \ 'winheight': 15,
- \ 'winminheight': -1,
- \ 'reversed': 0,
- \ 'prompt': '❯',
- \ 'start_filter': 1,
- \ })
-
-nnoremap <leader>p :<C-u>Denite file/rec<cr>
-nnoremap <leader>s :<C-u>Denite buffer<cr>
-nnoremap <leader>y :<C-u>Denite neoyank<cr>
-nnoremap <leader>l :<C-u>Denite line<cr>
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " Cleans the code. Replaces tabs with spaces, fixes the line returns and
 " deletes end of line blanks.
@@ -258,3 +187,4 @@ let g:ale_linters = {
 \}
 
 let g:ale_java_checkstyle_config = '~/checkstyle.xml'
+let g:ale_kotlin_kotlinc_config_file = '~/.editorconfig'
