@@ -25,10 +25,10 @@ Plug 'derekwyatt/vim-scala'             " Scala syntax
 Plug 'wavded/vim-stylus'                " Stylus syntax
 Plug 'rust-lang/rust.vim'               " Rust syntax
 Plug 'mustache/vim-mustache-handlebars' " Handlebars syntax
-Plug 'leafgarland/typescript-vim'       " Typescriptt syntax
+Plug 'leafgarland/typescript-vim'       " Typescript syntax
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'udalov/kotlin-vim'                " Kotlin syntax
 Plug 'gre/play2vim'                     " Playframework (twirl) syntax
-Plug 'elixir-editors/vim-elixir'
 Plug 'mattn/webapi-vim'                 " VIM web client
 Plug 'dennis84/cll'
 Plug 'dennis84/vim-scastie'
