@@ -9,7 +9,7 @@ Plug 'tpope/vim-commentary'             " Comment in and out
 Plug 'tpope/vim-surround'               " surround parentheses, brackets, quotes, ...
 Plug 'tpope/vim-fugitive'               " Git tool
 Plug 'tpope/vim-vinegar'                " Open netrw with -
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bling/vim-airline'                " Status bar
@@ -18,8 +18,9 @@ Plug 'andymass/vim-matchup'             " highlight matching words
 Plug 'ntpeters/vim-better-whitespace'   " highlight trailing whitespace
 Plug 'farmergreg/vim-lastplace'         " reopen files at your last edit position
 Plug 'rstacruz/vim-closer'              " Closes brackets
-Plug 'dracula/vim'                      " Colortheme
-Plug 'soft-aesthetic/soft-era-vim'      " Colortheme
+Plug 'dracula/vim'                      " Colorscheme
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'soft-aesthetic/soft-era-vim'      " Colorscheme
 Plug 'tpope/vim-markdown'               " Markdown syntax
 Plug 'derekwyatt/vim-scala'             " Scala syntax
 Plug 'wavded/vim-stylus'                " Stylus syntax
@@ -33,6 +34,7 @@ Plug 'mattn/webapi-vim'                 " VIM web client
 Plug 'dennis84/cll'
 Plug 'dennis84/vim-scastie'
 Plug 'unblevable/quick-scope'
+Plug 'ruanyl/vim-gh-line'
 call plug#end()
 
 " Sets the mapleader (<leader>) to ,
@@ -44,8 +46,10 @@ syntax on
 " Set filetype stuff to on
 filetype plugin indent on
 
-" Colorsheme
-colorscheme soft-era
+" Colorscheme
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'ocean'
+colorscheme material
 
 highlight Comment cterm=italic
 
