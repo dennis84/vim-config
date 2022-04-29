@@ -3,7 +3,7 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
-Plug 'rking/ag.vim'                     " AG for vim
+Plug 'mileszs/ack.vim'                  " Ack for vim
 Plug 'tpope/vim-sensible'               " a universal set of defaults
 Plug 'tpope/vim-commentary'             " Comment in and out
 Plug 'tpope/vim-surround'               " surround parentheses, brackets, quotes, ...
@@ -192,3 +192,8 @@ let g:ale_linters = {
 
 let g:ale_java_checkstyle_config = '~/checkstyle.xml'
 let g:ale_kotlin_kotlinc_config_file = '~/.editorconfig'
+
+hi! clear SpellBad
+hi SpellBad cterm=underline
+
+let g:ackprg = 'ag --vimgrep --smart-case'
