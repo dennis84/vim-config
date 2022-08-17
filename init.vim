@@ -161,7 +161,7 @@ nmap ySS <Plug>YSsurround
 nnoremap <silent> <Leader>p :FZF<CR>
 nnoremap <silent> <Leader>s :Buffers<CR>
 
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden'
 
 " Cleans the code. Replaces tabs with spaces, fixes the line returns and
 " deletes end of line blanks.
@@ -187,6 +187,7 @@ endif
 let g:ale_linters = {
 \  'javascript': ['eslint'],
 \  'scala': [],
+\  'kotlin': [],
 \  'java': ['checkstyle'],
 \}
 
@@ -196,4 +197,4 @@ let g:ale_kotlin_kotlinc_config_file = '~/.editorconfig'
 hi! clear SpellBad
 hi SpellBad cterm=underline
 
-let g:ackprg = 'ag --vimgrep --smart-case'
+let g:ackprg = 'ag --vimgrep --smart-case --hidden'
