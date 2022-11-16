@@ -12,29 +12,22 @@ Plug 'tpope/vim-vinegar'                " Open netrw with -
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'bling/vim-airline'                " Status bar
+Plug 'itchyny/lightline.vim'            " Status bar
 Plug 'w0rp/ale'                         " Linter
 Plug 'andymass/vim-matchup'             " highlight matching words
-Plug 'ntpeters/vim-better-whitespace'   " highlight trailing whitespace
 Plug 'farmergreg/vim-lastplace'         " reopen files at your last edit position
-Plug 'rstacruz/vim-closer'              " Closes brackets
-Plug 'dracula/vim'                      " Colorscheme
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-Plug 'soft-aesthetic/soft-era-vim'      " Colorscheme
 Plug 'tpope/vim-markdown'               " Markdown syntax
 Plug 'derekwyatt/vim-scala'             " Scala syntax
-Plug 'wavded/vim-stylus'                " Stylus syntax
 Plug 'rust-lang/rust.vim'               " Rust syntax
-Plug 'mustache/vim-mustache-handlebars' " Handlebars syntax
 Plug 'leafgarland/typescript-vim'       " Typescript syntax
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'udalov/kotlin-vim'                " Kotlin syntax
-Plug 'gre/play2vim'                     " Playframework (twirl) syntax
 Plug 'mattn/webapi-vim'                 " VIM web client
 Plug 'dennis84/cll'
-Plug 'dennis84/vim-scastie'
 Plug 'unblevable/quick-scope'
 Plug 'ruanyl/vim-gh-line'
+Plug 'folke/tokyonight.nvim'
+Plug 'zakharykaplan/nvim-retrail'
 call plug#end()
 
 " Sets the mapleader (<leader>) to ,
@@ -47,9 +40,8 @@ syntax on
 filetype plugin indent on
 
 " Colorscheme
-let g:material_terminal_italics = 1
-let g:material_theme_style = 'ocean'
-colorscheme material
+colorscheme tokyonight-night
+let g:lightline = {'colorscheme': 'tokyonight'}
 
 highlight Comment cterm=italic
 
@@ -163,22 +155,6 @@ nnoremap <silent> <Leader>s :Buffers<CR>
 
 let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden'
 
-" Cleans the code. Replaces tabs with spaces, fixes the line returns and
-" deletes end of line blanks.
-function! CleanCode()
-  " Replace tabs with spaces
-  %retab
-
-  " Turn DOS returns ^M into real returns
-  %s/\r/\r/eg
-
-  " Delete end of line blanks
-  %s=  *$==e
-  echo "Cleaned up this mess."
-endfunction
-
-nmap <leader>cc :call CleanCode()<cr>
-
 " set bash shell if fish-shell is active
 if $SHELL =~ 'fish'
   set shell=/bin/sh
@@ -198,3 +174,12 @@ hi! clear SpellBad
 hi SpellBad cterm=underline
 
 let g:ackprg = 'ag --vimgrep --smart-case --hidden'
+
+" Remap <cr> to make it confirms completion:
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
+" Use <Tab> and <S-Tab> to navigate the completion list:
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+
+lua require("retrail").setup()

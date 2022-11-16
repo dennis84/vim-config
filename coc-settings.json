@@ -1,3 +1,5 @@
 {
+  "suggest.enablePreselect": true,
+  "suggest.noselect": false,
   "typescript.validate.enable": false
 }
