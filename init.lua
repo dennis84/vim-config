@@ -8,6 +8,7 @@ Plug 'tpope/vim-fugitive'               -- Git tool
 Plug 'tpope/vim-vinegar'                -- Open netrw with -
 Plug 'nvim-lua/plenary.nvim'
 Plug('nvim-telescope/telescope.nvim', { tag = '0.1.0' })
+Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 Plug('neoclide/coc.nvim', {branch = 'release'})
 Plug 'nvim-lualine/lualine.nvim'        -- status bar
 Plug 'w0rp/ale'                         -- Linter
@@ -82,6 +83,19 @@ keymap("c", "%%", "<C-R>=expand('%:h').'/'<cr>", opts)
 keymap("n", "<leader>/", "<cmd>nohlsearch<CR>", opts)
 
 -- Telescope
+require('telescope').setup {
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
+  }
+}
+
+require('telescope').load_extension('fzf')
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>p', builtin.find_files, {})
 vim.keymap.set('n', '<leader>s', builtin.buffers, {})
