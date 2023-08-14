@@ -11,7 +11,6 @@ Plug('nvim-telescope/telescope.nvim', { tag = '0.1.0' })
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 Plug('neoclide/coc.nvim', {branch = 'release'})
 Plug 'nvim-lualine/lualine.nvim'        -- status bar
-Plug 'w0rp/ale'                         -- Linter
 Plug 'andymass/vim-matchup'             -- highlight matching words
 Plug 'farmergreg/vim-lastplace'         -- reopen files at your last edit position
 Plug 'tpope/vim-markdown'               -- Markdown syntax
@@ -25,6 +24,7 @@ Plug 'unblevable/quick-scope'           -- highlight characters in current line 
 Plug 'ruanyl/vim-gh-line'               -- ope line in guthub with `<leader>gh`
 Plug 'folke/tokyonight.nvim'            -- colorscheme
 Plug 'zakharykaplan/nvim-retrail'       -- show and remove trailing whitespace
+Plug 'hashivim/vim-terraform'
 vim.call('plug#end')
 
 -- Sets the mapleader (<leader>) to ,
@@ -100,22 +100,17 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>p', builtin.find_files, {})
 vim.keymap.set('n', '<leader>s', builtin.buffers, {})
 
--- Ale
-vim.g.ale_java_checkstyle_config = '~/checkstyle.xml'
-vim.g.ale_kotlin_kotlinc_config_file = '~/.editorconfig'
-vim.g.ale_linters = {
-  javascript = { 'eslint' },
-	scala = {},
-	kotlin = {},
-	java = { 'checkstyle' },
-}
-
 -- CoC
 -- Remap <cr> to make it confirms completion:
 vim.cmd([[inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"]])
 -- Use <Tab> and <S-Tab> to navigate the completion list:
 vim.cmd([[inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"]])
 vim.cmd([[inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"]])
+
+vim.keymap.set("n", "gd", "<Plug>(coc-definition)", {silent = true})
+vim.keymap.set("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
+vim.keymap.set("n", "gi", "<Plug>(coc-implementation)", {silent = true})
+vim.keymap.set("n", "gr", "<Plug>(coc-references)", {silent = true})
 
 -- Ack
 vim.g.ackprg = 'rg --vimgrep --no-heading'
