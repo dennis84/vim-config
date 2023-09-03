@@ -1,9 +1,24 @@
 return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-		init = function()
-			vim.keymap.set("n", "-", ":Neotree position=current<cr>", { desc = "Open neo-tree" })
-		end,
+		keys = {
+			{
+				"-",
+				function()
+					require("neo-tree.command").execute({
+						position = "current",
+						reveal = true,
+					})
+				end,
+			},
+		},
+		opts = {
+			filesystem = {
+				filtered_items = {
+					visible = true,
+				},
+			},
+		},
 	},
 	{
 		"L3MON4D3/LuaSnip",
