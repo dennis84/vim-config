@@ -4,7 +4,7 @@ return {
 		opts = {
 			autoformat = false,
 			servers = {
-				kotlin_language_server = {},
+				-- kotlin_language_server = {},
 			},
 		},
 	},
@@ -12,7 +12,7 @@ return {
 		"williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
-				"kotlin-language-server",
+				-- "kotlin-language-server",
 				"prettierd",
 			},
 		},
