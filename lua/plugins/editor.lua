@@ -1,4 +1,5 @@
 return {
+	{ "rafamadriz/friendly-snippets", enabled = false },
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		keys = {
