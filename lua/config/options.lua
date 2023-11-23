@@ -4,3 +4,5 @@
 
 vim.opt.relativenumber = false
 vim.cmd[[set noswapfile]]
+
+vim.g.autoformat = false
