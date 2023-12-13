@@ -8,6 +8,12 @@ return {
 			require("retrail").setup()
 		end,
 	},
+	{
+		"L3MON4D3/LuaSnip",
+		opts = {
+			history = false,
+		},
+	},
 	-- autocompletion
 	{
 		"hrsh7th/nvim-cmp",
