@@ -6,3 +6,7 @@ vim.opt.relativenumber = false
 vim.cmd[[set noswapfile]]
 
 vim.g.autoformat = false
+
+if vim.g.neovide then
+  vim.o.guifont = "JetBrainsMono:h22"
+end
