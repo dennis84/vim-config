@@ -11,8 +11,9 @@ local root_files = {
 
 return {
 	{
-		"neovim/nvim-lspconfig",
+		"nvim-lspconfig",
 		opts = {
+			inlay_hints = { enabled = false },
 			servers = {
 				kotlin_language_server = {
 					storagePath = util.root_pattern(unpack(root_files))(vim.fn.expand("%:p:h")),
