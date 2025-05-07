@@ -34,4 +34,5 @@ return {
 	},
 	-- reopen files at your last edit position
 	{ "farmergreg/vim-lastplace" },
+	{ "jparise/vim-graphql" },
 }
