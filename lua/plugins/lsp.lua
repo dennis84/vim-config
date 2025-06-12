@@ -10,8 +10,6 @@ local root_files = {
 }
 
 return {
-	{ "mason-org/mason.nvim", version = "1.11.0" },
-	{ "mason-org/mason-lspconfig.nvim", version = "1.32.0" },
 	{
 		"nvim-lspconfig",
 		opts = {
@@ -30,11 +28,10 @@ return {
 		},
 	},
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		opts = {
 			ensure_installed = {
 				"kotlin-language-server",
-				"prettierd",
 			},
 		},
 	},
