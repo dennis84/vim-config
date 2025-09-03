@@ -3,7 +3,7 @@
 -- Add any additional options here
 
 vim.opt.relativenumber = false
-vim.cmd[[set noswapfile]]
+vim.cmd([[set noswapfile]])
 
 vim.g.autoformat = false
 
