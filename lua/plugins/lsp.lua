@@ -1,54 +1,32 @@
-local util = require("lspconfig.util")
-
-local root_files = {
-	"settings.gradle", -- Gradle (multi-project)
-	"settings.gradle.kts", -- Gradle (multi-project)
-	"build.xml", -- Ant
-	"pom.xml", -- Maven
-	"build.gradle", -- Gradle
-	"build.gradle.kts", -- Gradle
-}
-
 return {
 	{
+		"mason-org/mason.nvim",
+		opts = { ensure_installed = { "kotlin-lsp" } },
+	},
+	{
 		"nvim-lspconfig",
-		opts = {
-			inlay_hints = { enabled = false },
-			servers = {
-				kotlin_lsp = {},
-				eslint = {
-					settings = {
-						-- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
-						workingDirectory = { mode = "auto" },
-					},
-				},
-			},
-		},
-		config = function(_, opts)
-			local lspconfig = require("lspconfig")
+		opts = function(_, opts)
 			local configs = require("lspconfig.configs")
-
-			-- Add kotlin_lsp if not already configured
 			if not configs.kotlin_lsp then
+				local util = require("lspconfig.util")
 				configs.kotlin_lsp = {
 					default_config = {
 						cmd = { "kotlin-lsp", "--stdio" },
 						filetypes = { "kotlin" },
-						root_dir = lspconfig.util.root_pattern(
-							"settings.gradle", -- Gradle (multi-project)
-							"settings.gradle.kts", -- Gradle (multi-project)
-							"pom.xml", -- Maven
-							"build.gradle", -- Gradle
-							"build.gradle.kts", -- Gradle
-							"workspace.json" -- Used to integrate your own build system
+						root_dir = util.root_pattern(
+							"settings.gradle",
+							"settings.gradle.kts",
+							"pom.xml",
+							"build.gradle",
+							"build.gradle.kts",
+							"workspace.json"
 						),
-						settings = {},
 					},
 				}
 			end
-
-			-- Setup the server
-			lspconfig.kotlin_lsp.setup(opts.servers.kotlin_lsp or {})
+      opts.inlay_hints = { enabled = false }
+			opts.servers = opts.servers or {}
+			opts.servers.kotlin_lsp = opts.servers.kotlin_lsp or {}
 		end,
 	},
 }
