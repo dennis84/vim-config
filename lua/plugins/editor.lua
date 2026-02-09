@@ -1,4 +1,7 @@
 return {
+  -- disables certain features if the opened file is big
+  { "LunarVim/bigfile.nvim" },
+
   { "rafamadriz/friendly-snippets", enabled = false },
   {
     "nvim-neo-tree/neo-tree.nvim",
