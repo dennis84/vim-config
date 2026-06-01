@@ -10,3 +10,5 @@ vim.g.autoformat = false
 if vim.g.neovide then
   vim.o.guifont = "JetBrainsMono:h22"
 end
+
+vim.g.lazyvim_prettier_needs_config = true
